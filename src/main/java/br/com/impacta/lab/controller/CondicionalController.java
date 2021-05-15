@@ -10,8 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/atividades")
 public class CondicionalController {
 
+	private String getAgeToString(int idade){
+		if(idade == 18){
+			return "Possui 18 anos";
+		}
+
+		return (idade > 18) ? "Possui mais de 18 anos" : "Possui menos de 18 anos";
+	}
+
 	@GetMapping("/condicional")
 	public ResponseEntity<String> simularValores(@RequestParam(name="idade") int idade) {
+
+		String ageFormated = getAgeToString(idade);
 		/*
 		 * Elabore um algoritmo para dizer a partir da idade se a 
 		 * pessoa tem mais ou menos do que 18 anos.
@@ -26,7 +36,7 @@ public class CondicionalController {
 		 */
 		
 		
-		return ResponseEntity.ok("APÓS O ALGORITMO COLOCAR O TEXTO/VARIAVEL DE RETORNO AQUI");
+		return ResponseEntity.ok(ageFormated);
 	}
 	
 }

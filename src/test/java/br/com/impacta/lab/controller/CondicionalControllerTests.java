@@ -38,6 +38,19 @@ public class CondicionalControllerTests {
 		assertEquals("Possui mais de 18 anos".toUpperCase(), response.toUpperCase());
 		
 	}
+
+	@Test
+	public void shouldReturnPossui18Anos() throws Exception {
+		RequestBuilder request = get("/atividades/condicional").queryParam("idade", "18")
+					.accept(MediaType.TEXT_PLAIN);
+		
+		MvcResult result = mvc.perform(request).andExpect(status().isOk()).andReturn();
+		
+		String response = result.getResponse().getContentAsString();
+		
+		assertEquals("Possui 18 anos".toUpperCase(), response.toUpperCase());
+		
+	}
 	
 	@Test
 	public void shouldReturnPossuiMenosDe18Anos() throws Exception {
